@@ -2,20 +2,24 @@
 
 \documentclass[12pt]{book}
 \usepackage[usenames,dvipsnames]{color}
+\usepackage[top=1.5in, bottom=1.5in, left=1.75in, right=1.75in]{geometry}
+\usepackage[utf8]{inputenc}
 \linespread{1.3}
 \begin{document}
 
-\title{Exerpts from The Lord of the Rings}
-\author{J.R.R. Tolkien}
-\date{}
-\maketitle
-\clearpage
+%Centers the page number
+\pagestyle{plain}
 
+%Deletes extra pages 
+\let\cleardoublepage\clearpage
 
-\tableofcontents
+%Begin importing .tex files
+\input{./text/title}
 
+\tableofcontents{\thispagestyle{empty}}
+
+\input{./text/test}
 \input{./text/rings}
-
 \input{./text/elves}
 
 \end{document}

@@ -4,20 +4,35 @@ import codecs
 prompt = "Filename: "
 z = raw_input(prompt)
 
-#Get text and create new file
-old_open = codecs.open(z, "r+", "utf-8")
-old = old_open.read()
-new = "new_" + z
+#Extract text and close the file
+book_open = codecs.open(z, "r+", "utf-8")
+book = book_open.read()
+book_open.close()
 
+#Checks if file has already been ebooked.
+def check(a):
+    search = a.find("ebooked")    
+    if search == -1:
+        decoder(a)
+        print "REPLACED YOUR STUFF"
+    else:
+        print "Your book has already been ebooked."
+
+#LaTeX character replacements
 def decoder(a):
-    single = "'"
-    for x in a:
-        if x == single:
-            a = a.replace("'", "J")
+    #Verifies check for future
+    book_add = codecs.open(z, "a", "utf-8")
+    book_add.write("% ebooked") 
 
-    #Still prints mutliple copies due to for statement
-    new_open = open(new, "r+")
-    t = new_open.write(a)
-    
+    #Characters
+    double = "'"
 
-decoder(old)
+    #Replacement
+    a = a.replace("'", "\\textquotedblleft{}")
+    print a
+
+    #Write new code to file
+    book_open = codecs.open(z, "w", "utf-8")
+    book_open.write(a)
+
+check(book)
